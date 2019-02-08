@@ -11,7 +11,7 @@ String act = request.getParameter("act");
 <head> 
 <meta charset="UTF-8"> 
 <title>권한 변경</title> 
- 
+   
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
  
 </head> 
