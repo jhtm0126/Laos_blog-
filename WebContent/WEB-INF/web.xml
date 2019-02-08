@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>laos_v3jq</display-name>
+  <welcome-file-list>
+ 
+    <welcome-file>index.jsp</welcome-file>
+  
+  </welcome-file-list>
+  
+  <!-- 일반 파일 다운로드  -->
+  <servlet>
+      <servlet-name>Download</servlet-name>
+      <servlet-class>nation.web.tool.Download</servlet-class>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>Download</servlet-name>
+      <url-pattern>/download</url-pattern>
+  </servlet-mapping>
+  
+    <!-- 일반 파일 다운로드 Upgrade  -->
+  <servlet>
+      <servlet-name>Download2</servlet-name>
+      <servlet-class>nation.web.tool.Download2</servlet-class>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>Download2</servlet-name>
+      <url-pattern>/download2</url-pattern>
+  </servlet-mapping>
+  <!-- *********************************************************************** -->
+  <!-- CKFINDER START -->
+  <!-- *********************************************************************** -->
+  <servlet>
+    <servlet-name>ConnectorServlet</servlet-name>
+    <servlet-class>com.ckfinder.connector.ConnectorServlet</servlet-class>
+    <init-param>
+      <param-name>XMLConfig</param-name>
+      <param-value>/WEB-INF/ckfinder-config.xml</param-value>
+    </init-param>
+    <init-param>
+      <param-name>debug</param-name>
+      <param-value>false</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+ 
+  <servlet-mapping>
+    <servlet-name>ConnectorServlet</servlet-name>
+    <url-pattern>
+                   /ckfinder/core/connector/java/connector.java
+          </url-pattern>
+  </servlet-mapping>
+ 
+  <!-- *********************************************************************** -->
+  <!-- CKFINDER END -->
+  <!-- *********************************************************************** -->
+  
+  <!-- *************************************************** --> 
+  <!--        MariaDB DBCP Connection Pool Start         -->
+  <!-- *************************************************** --> 
+  <servlet> <!-- DBCP 연동 서블릿 -->
+    <servlet-name>DBCPServlet</servlet-name>
+    <servlet-class>nation.web.tool.DBCPServlet</servlet-class>
+    <init-param> <!-- Connection Pool Name, ★ 변경 부분 -->
+      <param-name>registerPool</param-name> <!-- 변수명 -->
+       <param-value>laos</param-value>
+      <!-- <param-value>sjaqj23</param-value>  -->
+    </init-param>
+    <init-param><!-- JDBC Driver -->
+      <param-name>jdbcDriver</param-name>
+      <param-value>org.mariadb.jdbc.Driver</param-value>
+    </init-param>
+    <init-param><!-- MySQL 서버의 주소, ★ 변경 부분 -->
+      <param-name>jdbcURL</param-name> 
+       <param-value>jdbc:mariadb://localhost:5306/laos</param-value> 
+      <!-- <param-value>jdbc:mariadb://localhost:3306/sjaqj23</param-value> -->
+    </init-param>
+    <init-param><!-- 계정명, ★ 변경 부분 -->
+      <param-name>user</param-name>
+       <param-value>A2iORveTE2qM9NvxTPFVTA==</param-value>
+      <!-- <param-value>uZ9E1CaQyrfktwBxiJ98NQ==</param-value> -->
+    </init-param>
+    <init-param><!-- 패스워드, ★ 변경 부분 -->
+      <param-name>password</param-name>
+      <param-value>wst87QJl3sTfSAPSIaxhhg==</param-value> 
+<!--       <param-value>O9bq55O9Pp7zIWpGv+Ekrg==</param-value> -->
+    </init-param>
+    <init-param><!-- 순간 동시 접속자수, ★ 변경 부분 -->
+      <param-name>maxActive</param-name>
+      <param-value>3</param-value>
+    </init-param>
+    <init-param><!-- 대기중인 접속자수 -->
+      <param-name>maxIdle</param-name>
+      <param-value>3</param-value>
+    </init-param>
+      
+    <!-- 톰캣 실행시 자동 실행, 0보다 큰 값이면 자동 실행 -->
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <!-- *************************************************** --> 
+  <!--         MySQL DBCP Connection Pool End         -->
+  <!-- *************************************************** --> 
+  
+
+  
+  
+  
+ 
+</web-app>
